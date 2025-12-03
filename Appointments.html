@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            font-style: italic;
+            background: linear-gradient(rgba(107, 130, 167, 0.4), rgba(227, 218, 218, 0.4)),
+                        url(istockphoto-457344351-612x612.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+            color: black;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        #search {
+            width: 300px;
+            height: 40px;
+            padding: 5px 10px;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+            font-style: italic;
+        }
+
+        table {
+            width: 90%;
+            max-width: 700px;
+            border-collapse: collapse;
+            background: rgba(215, 232, 235, 0.55);
+            backdrop-filter: blur(6px);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(17,16,16,0.6);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: bisque;
+            color: black;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        button {
+            padding: 8px 12px;
+            background-color:wheat;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: rgb(52, 140, 200);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Appointments</h1>
+
+    <input type="text" id="search" placeholder="Search by doctor">
+
+    <table>
+        <thead>
+            <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Specialty</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="appointmentsTable"></tbody>
+    </table>
+
+   <script>
+    let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+    let table = document.getElementById("appointmentsTable");
+    let currentUser = prompt("Enter your name to see your appointments:").trim();
+
+    function displayAppointments(list) {
+        table.innerHTML = "";
+        if(list.length === 0){
+            table.innerHTML = `<tr><td colspan="6" style="text-align:center; color: red;" font>Not found</td></tr>`;
+            return;
+        }
+        list.forEach((a, index) => {
+            table.innerHTML += `
+                <tr>
+                    <td>${a.patient}</td>
+                    <td>${a.doctor}</td>
+                    <td>${a.specialtyname}</td>
+                    <td>${a.date}</td>
+                    <td>${a.time}</td>
+                    <td><button onclick="cancel(${index})">Cancel</button></td>
+                </tr>
+            `;
+        });
+    }
+
+    function cancel(index) {
+        appointments.splice(index, 1);
+        localStorage.setItem("appointments", JSON.stringify(appointments));
+        displayAppointments(appointments.filter(a => a.patient === currentUser));
+    }
+
+    // عرض الحجوزات الخاصة بالمستخدم الحالي فقط
+    let userAppointments = appointments.filter(a => a.patient === currentUser);
+    displayAppointments(userAppointments);
+
+    document.getElementById("search").addEventListener("keyup", function() {
+        let value = this.value.toLowerCase();
+        let filtered = appointments.filter(a =>
+            a.patient === currentUser && a.doctor.toLowerCase().includes(value)
+        );
+        displayAppointments(filtered);
+    });
+</script>
+
+
+</body>
+</html>

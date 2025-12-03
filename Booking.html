@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking page</title>
+
+    <style>
+        h1{
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        body {
+             margin: 0;
+            font-family: Arial, sans-serif;
+            font-style: italic;
+            min-height: 100vh;
+            background-image: url(hospital002.webp);
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .booking-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .booking-box {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            font-style: italic;
+            border-radius: 12px;
+            padding: 25px;
+            width: 350px;               
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.35);
+        }
+
+        .booking-box form{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .booking-box select,
+        .booking-box input{
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+        }
+
+        .booking-box button{
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+        }
+        .booking-box button:hover {
+           background-color: darkgrey;}
+
+       #viewAppointments {
+    position: fixed;      /* يثبت في الشاشة مهما عمل المستخدم scroll */
+    bottom: 20px;         /* على بعد 20px من أسفل الصفحة */
+    right: 20px;          /* على بعد 20px من يمين الصفحة */
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background-color: #28a745;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+    z-index: 1000;
+}
+
+#viewAppointments:hover {
+    background-color: #218838;
+}
+    </style>
+</head>
+
+<body>
+
+<div class="booking-container">
+    <h1><b>Book your Appointment</b></h1>
+
+    <div class="booking-box">
+        <form id="bookingForm">
+            <select id="specialty" required>
+                <option value="">Select Specialty</option>
+                <option>Cardiology</option>
+                <option>Dermatology</option>
+                <option>Neurology</option>
+                <option>Pediatrics</option>
+                <option>Orthopedics</option>
+            </select>
+            
+            <input type="text" id="doctor" placeholder="Doctor Name" required>
+            <input type="date" id="date" required>
+            <input type="time" id="time" required>
+            <input type="text" id="patient" placeholder="Enter your Name" required>
+            <input type="tel" id="number" placeholder="Enter your number" required>
+            <button type="submit">Book Now</button>
+        </form>
+    </div>
+</div>
+<div class="button-container">
+            <button type="button" id="viewAppointments" onclick="goToAppointments()">View My Appointments</button>
+        </div>
+<script>
+  const form = document.getElementById("bookingForm");
+   function goToAppointments() {
+    window.location.href = "appointments.html";
+  }
+
+  let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let doctor= document.getElementById("doctor").value.trim();
+    let date= document.getElementById("date").value;
+    let time= document.getElementById("time").value;
+    let patient= document.getElementById("patient").value;
+    let num= document.getElementById("number").value;
+    let specialtyname = document.getElementById("specialty").value
+
+
+
+    if(doctor === "" || date === "" || time === ""){
+      message.textContent = "Please fill all fields";
+      message.style.color = "orange";
+      return;
+    }
+
+    let conflict = appointments.some(a =>
+    a.doctor.toLowerCase() === doctor.toLowerCase() &&
+    a.date === date &&
+    a.time === time
+    );
+     
+    if(conflict){
+      alert("This appointment is already booked");
+      return;
+    }
+
+    appointments.push({patient ,doctor,specialtyname, date, time });
+    localStorage.setItem("appointments", JSON.stringify(appointments));
+
+    alert("Your appointment booked successfully");
+
+    form.reset();
+  });
+</script>
+</body>
+</html>
