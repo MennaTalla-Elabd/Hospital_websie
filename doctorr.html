@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Doctor Schedule Calendar</title>
+
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+<style>
+body { font-family: Arial; background: rgb(218, 218, 255); }
+#calendar { width: 80%; margin: 40px auto; background: white; padding: 20px; border-radius: 10px; }
+h1 { text-align: center; margin-bottom: 20px; color: rgb(104, 104, 255); font-size: xx-large; font-family: Arial; }
+.fc-toolbar button {
+    background-color: #007bff !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.fc-toolbar button:hover { background-color: #0056b3 !important; }
+</style>
+</head>
+<body>
+
+<h1>Doctor Schedule</h1>
+<div id="calendar"></div>
+
+<script>
+let calendar;
+
+document.addEventListener('DOMContentLoaded', function() {
+    const calendarEl = document.getElementById('calendar');
+
+    //  localStorage
+    let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+
+    //  FullCalendar
+    const events = appointments.map(a => ({
+        title: a.patient + " (" + a.specialtyname + ")",
+        start: a.date + "T" + a.time,
+        color: "orange"
+    }));
+
+    calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        events: events,
+        editable: false,
+        selectable: false,
+        eventClick: null
+    });
+
+    calendar.render();
+});
+
+// تحديث الكاليندر تلقائي عند حجز جديد من صفحة Booking
+window.addEventListener('storage', function(){
+    if(calendar){
+        let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+        const events = appointments.map(a => ({
+            title: a.patient + " (" + a.specialtyname + ")",
+            start: a.date + "T" + a.time,
+            color: "orange"
+        }));
+        calendar.removeAllEvents();
+        calendar.addEventSource(events);
+    }
+});
+</script>
+
+</body>
+</html>

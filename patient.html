@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Profile</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(rgba(167, 107, 130, 0.4), rgba(218, 227, 218, 0.4)),
+                url('https://images.healtheg.com//Images/53557/64831796_467508550674342_1583264991304220672_n90ecb7e2-e18f-44ec-b98e-47153ad23ecc.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .main-container {
+            width: 90%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Header with icons */
+        .header-icons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .profile-icon {
+            color: rgb(64, 167, 235);
+            font-size: 50px;
+        }
+        
+        .notification-icon {
+            color: rgb(64, 167, 235);
+            font-size: 30px;
+        }
+        
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #7f8c8d;
+            font-size: 18px;
+        }
+        
+        /* Search Bar */
+        .search-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-title {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .search-title i {
+            color: rgb(64, 167, 235);
+        }
+        
+        .search-bar {
+            display: flex;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 16px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            background: white;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: rgb(64, 167, 235);
+        }
+        
+        .search-btn {
+            background: rgb(64, 167, 235);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 12px;
+            font-size: 16px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        
+        .search-btn:hover {
+            background: rgb(64, 167, 235);
+        }
+        
+        /* Action Buttons Section */
+        .actions-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        /* Book Appointment Button */
+        .appointment-btn, .visits-btn {
+            color: white;
+            border: none;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        
+        .appointment-btn:active, .visits-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .appointment-btn {
+            background: rgb(64, 167, 235);
+        }
+        
+        .appointment-btn:hover {
+            background: #4944ad;
+        }
+        
+        /* Previous Visits Button */
+        .visits-btn {
+            background: #3447db;
+        }
+        
+        .visits-btn:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Container with transparency -->
+    <div class="main-container">
+        <!-- Header Icons -->
+        <div class="header-icons">
+            <i class="material-icons profile-icon">account_circle</i>
+            <div class="notification-icon">
+                <i class="fas fa-bell"></i>
+            </div>
+        </div>
+        
+        <!-- Header -->
+        <div class="header">
+            <h1>Patient Profile</h1>
+            <p>Manage your medical records, appointments, and healthcare journey in one secure place</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <h2 class="search-title">
+                <i class="fas fa-search"></i>
+                Find a Doctor
+            </h2>
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search for a specialist, clinic, or doctor name...">
+                <button class="search-btn">Search</button>
+            </div>
+        </div>
+      
+        <!-- Action Buttons -->
+        <div class="actions-container">
+            <button class="appointment-btn">
+                <i class="fas fa-calendar-plus"></i>
+                <span>Book Your Appointment</span>
+            </button>
+           
+            <button class="visits-btn">
+                <i class="fas fa-history"></i>
+                <span>Show Your Last Previous Visits</span>
+            </button>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
