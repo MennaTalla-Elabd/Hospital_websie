@@ -1,85 +1,102 @@
 body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            font-style: italic;
-            background: linear-gradient(rgba(107, 130, 167, 0.4), rgba(227, 218, 218, 0.4)),
-                url(hospital_pic.jpeg);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            color: white(186, 12, 12);
-            padding-top: -50px;
-            background-origin: padding-box;
-        }
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-style: italic;
+    background: linear-gradient(rgba(107, 130, 167, 0.4), rgba(227, 218, 218, 0.4)),
+        url(hospital_pic.jpeg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* خلي البوكس يظهر من فوق شويه */
+    color: rgb(186, 12, 12);
+    padding-top: 100px; /* مسافة من فوق */
+    background-origin: padding-box;
+}
 
-        .page-container {
-            width: 70%;
-            max-width: 900px;
-            margin: 180px;
-        }
+.page-container {
+    width: 70%;
+    max-width: 900px;
+    margin-top: 180px; /* المسافة تحت الـ topbar */
+}
 
-        .welcome-container {
-            text-align: center;
-            background: rgba(215, 232, 235, 0.55);
-            padding: 40px 60px;
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(17, 16, 16, 0.899);
-            margin-bottom: 40px;
-            margin: 40px;
-        }
+.welcome-container {
+    text-align: center;
+    background: rgba(215, 232, 235, 0.55);
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(17, 16, 16, 0.899);
+    margin-bottom: 40px;
+}
 
-         .login_signup {
-            
-            background:white;
-            padding: 40px 60px;
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(17, 16, 16, 0.899);
-            margin-bottom: 0px;
-            margin: 80px;
-            margin-left: 0px;
-            
-        }
+.login_signup {
+    background: white;
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(17, 16, 16, 0.899);
+    margin-bottom: 0px;
+    margin-top: 40px;
+}
 
-        h1 {
-            color: black;
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
+h1 {
+    color: black;
+    font-size: 48px;
+    margin-bottom: 10px;
+}
 
-        p {
-            color: black;
-            font-size: 20px;
-            margin-bottom: 30px;
-        }
+p {
+    color: black;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
 
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: rgb(64, 167, 235);
-            color: black;
-            text-decoration: none;
-            font-size: 18px;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: rgb(64, 167, 235);
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
 
-        .btn:hover {
-            background-color: rgb(64, 167, 235);
-        }
-        
-        .ABOUT{
-            text-align: left;
-        }
+.btn:hover {
+    background-color: rgb(64, 167, 235);
+}
 
+.ABOUT{
+    text-align: left;
+}
 
-        html {
-            scroll-behavior: smooth;
-        }
-        .box {
-        width: 300px;
-        height: 40px;
-        }
+html {
+    scroll-behavior: smooth;
+}
+
+.box {
+    width: 300px;
+    height: 40px;
+}
+
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    margin: 20px 0px;
+    padding: 40px;
+    background-color: rgba(169, 179, 188, 0.92);
+}
+
+.bar a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: x-large;
+    justify-content: center;  
+    gap: 80px;                
+    padding: 20px;
+}

@@ -17,7 +17,7 @@
             font-family: Arial, sans-serif;
             font-style: italic;
             min-height: 100vh;
-            background-image: url(hospital002.webp);
+            background-image: url(book_image.jpg);
             background-size: cover;
             background-position: center;
 
@@ -42,6 +42,40 @@
             background: rgba(255,255,255,0.2);
             box-shadow: 0 20px 30px rgba(0,0,0,0.35);
         }
+
+        
+        #doctorSchedule {
+    position: fixed;      
+    bottom: 70px;         
+    right: 20px;          
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background-color: #17a2b8;  
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+    z-index: 1000;
+}
+
+.booking-box {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            font-style: italic;
+            border-radius: 12px;
+            padding: 25px;
+            width: 350px;               
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.35);
+        }
+
+
+#doctorSchedule:hover {
+    background-color: #138496;
+}
+
 
         .booking-box form{
             display: flex;
@@ -72,9 +106,9 @@
            background-color: darkgrey;}
 
        #viewAppointments {
-    position: fixed;      /* يثبت في الشاشة مهما عمل المستخدم scroll */
-    bottom: 20px;         /* على بعد 20px من أسفل الصفحة */
-    right: 20px;          /* على بعد 20px من يمين الصفحة */
+    position: fixed;      
+    bottom: 20px;        
+    right: 20px;          
     padding: 10px 20px;
     border-radius: 6px;
     border: none;
@@ -90,10 +124,42 @@
 #viewAppointments:hover {
     background-color: #218838;
 }
+
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            margin: 20px 0px;
+            padding: 40px;
+            background-color: rgba(169, 179, 188, 0.92);
+        }
+
+        .bar a {
+
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            font-size: x-large;
+            justify-content: center;  /* النصوص في المنتصف */
+            gap: 80px;                /* ← المسافة بين الكلمات */
+            padding: 20px;
+        }
     </style>
 </head>
 
 <body>
+
+    <header class="topbar">
+        <div class="bar">
+            <a href="sandw.HTML">Home</a>
+            <a href="login.html">Login</a>
+            <a href="search.html">search</a>
+            <a href="booking.html">Booking</a>
+            <a href="">My Profile</a>
+        </div>
+    </header>
 
 <div class="booking-container">
     <h1><b>Book your Appointment</b></h1>
@@ -120,12 +186,18 @@
 </div>
 <div class="button-container">
             <button type="button" id="viewAppointments" onclick="goToAppointments()">View My Appointments</button>
+            <button type="button" id="doctorSchedule" onclick="goToDoctorSchedule()">Doctor Schedule</button>
         </div>
+     
 <script>
   const form = document.getElementById("bookingForm");
    function goToAppointments() {
     window.location.href = "appointments.html";
   }
+   
+      function goToDoctorSchedule() {
+    window.location.href = "doctorr.html";
+}
 
   let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
 
@@ -139,8 +211,7 @@
     let num= document.getElementById("number").value;
     let specialtyname = document.getElementById("specialty").value
 
-
-
+    
     if(doctor === "" || date === "" || time === ""){
       message.textContent = "Please fill all fields";
       message.style.color = "orange";

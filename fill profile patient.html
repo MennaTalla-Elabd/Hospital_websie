@@ -1,0 +1,133 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Patient Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(rgba(107, 130, 167, 0.4), rgba(227, 218, 218, 0.4)),
+                url('https://images.healtheg.com//Images/53557/64831796_467508550674342_1583264991304220672_n90ecb7e2-e18f-44ec-b98e-47153ad23ecc.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #080c88;
+        }
+        
+        .field {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #1c0680;
+            font-weight: bold;
+        }
+        
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #c1a6a6;
+            border-radius: 5px;
+            font-size: 16px;
+            background: white;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid#c1a6a6;
+            border-radius: 5px;
+            font-size: 16px;
+            min-height: 80px;
+            font-family: 'Inter', sans-serif;
+            background: white;
+        }
+        
+        .done-btn {
+            background-color: #090457;
+            color: rgb(247, 241, 241);
+            border:#c1a6a6 ;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .done-btn:hover {
+            background-color: #1b0980;
+        }
+        
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(245, 235, 248, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hi, Enter Your Medical Information</h1>
+        
+        <div class="field">
+            <label for="address">Address</label>
+            <textarea id="address" placeholder="Enter your address (city/residential/building)"></textarea>
+        </div>
+        
+        <div class="field">
+            <label for="age">Age</label>
+            <textarea id="age" placeholder="Enter your age"></textarea>
+        </div>
+        
+        <div class="field">
+            <label for="history">Medical History (Chronic)</label>
+            <textarea id="history" placeholder="Enter your medical history (chronic diseases)"></textarea>
+        </div>
+
+        <div class="field">
+            <label for="bloodType">Blood Type</label>
+            <select id="bloodType" name="bloodType" required>
+                <option value="" disabled selected>Select your blood type</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+            </select>
+        </div>
+        
+        <button class="done-btn">Done Your Profile</button>
+    </div>
+</body>
+</html>

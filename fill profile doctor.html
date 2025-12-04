@@ -1,0 +1,150 @@
+ 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profile Information</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(rgba(107, 130, 167, 0.4), rgba(227, 218, 218, 0.4)),
+                url('https://images.healtheg.com//Images/53557/64831796_467508550674342_1583264991304220672_n90ecb7e2-e18f-44ec-b98e-47153ad23ecc.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(235, 229, 242, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1a035e;
+            margin-bottom: 25px;
+        }
+
+        .field {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #0f044c;
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background: white;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            min-height: 80px;
+            font-family: 'Inter', sans-serif;
+            background: white;
+        }
+
+        .done-btn {
+            background-color: #090457;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .done-btn:hover {
+            background-color: #1f0780;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Provide us with your Information</h1>
+
+        <div class="field">
+            <label for="experience">Experience</label>
+            <textarea id="experience" placeholder="Enter your years of experience"></textarea>
+        </div>
+
+        <div class="field">
+            <label for="Specializations">Specializations</label>
+            <select id="Specialization" name="Specializations" required>
+                <option value="" disabled selected>Select your Specialization</option>
+                <option value="1">Cardiology</option>
+                <option value="2">Emergency Medicine</option>
+                <option value="3">Oncology</option>
+                <option value="4">Neurosurgery</option>
+                <option value="5">Pediatrics</option>
+                <option value="6">General Internal Medicine</option>
+                <option value="7">Ophthalmology</option>
+                <option value="8">Nephrology</option>
+                <option value="9">Otorhinolaryngology (ENT)</option>
+                <option value="10">Infectious Diseases & Epidemiology</option>
+                <option value="11">Rheumatology & Immunology</option>
+                <option value="12">Pediatric Dentistry</option>
+                <option value="13">Radiology</option>
+                <option value="14">Psychiatry</option>
+                <option value="15">Family Medicine</option>
+                <option value="16">Pharmacy</option>
+            </select>      
+        </div>
+        
+        <div class="field">
+            <label for="time">Working Hours</label>
+            <select id="time" name="woorking" required>
+                <option value="" disabled selected>Select your working hours</option>
+                <option value="t1">8AM-2PM</option>
+                <option value="t2">2PM-8PM</option>
+                <option value="t3">8PM-2AM</option>
+                <option value="t4">2AM-8AM</option>
+                <option value="t5">(Day Shift): 8AM-8PM</option>
+                <option value="t6">(Night Shift): 8PM-8AM</option>
+                <option value="t7">24 hours</option>
+            </select>      
+        </div>
+
+        <button class="done-btn">Done Your Profile</button>
+    </div>
+</body>
+</html>
+
+
+

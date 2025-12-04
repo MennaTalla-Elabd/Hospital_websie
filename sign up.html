@@ -3,43 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sign up to hospital</title>
-        <link rel="stylesheet"  type = "text/css" href= "Styles.css" />
+    <title>Sign Up to Hospital</title>
+    <link rel="stylesheet" type="text/css" href="Styles.css" />
+    <style>
+        
+        .login_signup {
+            max-width: 500px;
+            margin: 65px auto; 
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
 
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        p {
+            text-align: center;
+            font-size: 16px;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        input.box {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            background-color: #40a7eb;
+            color: white;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2d8ac6;
+        }
+
+        p input[type="radio"] {
+            margin-left: 10px;
+            margin-right: 5px;
+        }
+
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            margin: 20px 0px;
+            padding: 40px;
+            background-color: rgba(169, 179, 188, 0.92);
+        }
+
+        .bar a {
+
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            font-size: x-large;
+            justify-content: center;  
+            gap: 80px;                
+            padding: 20px;
+        }
+
+    </style>
 </head>
 <body>
-  
-<form method="post"action=""  class="login_signup" class="page-container" style="margin-right: auto; margin-left: 30px; margin-top: auto;">
 
- <b><h1>Create New Account</h1></b>
-   <p style="left: 50px;; font-size: medium;">Welcome back to your personal account</p>
-   <br/><br/><br/> 
-   <label>
-   First Name<br/> <input type="text" name="name" placeholder="Enter your first name" class="box"><br/><br/>
-    </label>
-    <label>
-    Second Name<br/> <input type="text" name="name" placeholder="Enter your second name" class="box"><br/><br/>
-    </label>
-    <label>
-    Email Address<br/> <input type="text" name="email" placeholder="Write Your Email Address" class="box"><br/><br/>
-    </label>
-    <label>
-    Password<br/> <input type="password" name="password" placeholder="Write Your Password Here" class="box">
-    </label>
-    <br/><br/>
+        <header class="topbar">
+        <div class="bar">
+            <a href="sandw.HTML">Home</a>
+            <a href="login.html">Login</a>
+            <a href="search.html">search</a>
+            <a href="booking.html">Booking</a>
+            <a href="profile admin.html">My Profile</a>
+        </div>
+    </header>
+
+<form method="post" action="" class="login_signup">
+    <h1>Create New Account</h1>
+    <p>Welcome back to your personal account</p>
+
+    <label>First Name</label>
+    <input type="text" name="firstname" placeholder="Enter your first name" class="box">
+
+    <label>Second Name</label>
+    <input type="text" name="lastname" placeholder="Enter your second name" class="box">
+
+    <label>Email Address</label>
+    <input type="email" name="email" placeholder="Write Your Email Address" class="box">
+
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Write Your Password Here" class="box">
+
     <p>Gender<br/>
- <input type="radio" name="gender"  value="male ">Male  &nbsp&nbsp
- <input type="radio" name="gender"  value="female ">Female  &nbsp&nbsp
- 
+        <input type="radio" name="gender" value="male"> Male
+        <input type="radio" name="gender" value="female"> Female
     </p>
-    <input type="submit" value="Submit" style="justify-content: center;"/>
-    <br/>
-        <br/>
 
-    
+    <input type="submit" value="Submit">
 </form>
- 
 
-    
 </body>
 </html>

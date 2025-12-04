@@ -1,91 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>Search Page</title>
-    <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+<title>Search Page</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        font-style: italic;
+        background: linear-gradient(rgba(107, 130, 167, 0.4), rgba(227, 218, 218, 0.4)),
+            url(gettyimages-173799627-612x612.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 200px;
+        color: black;
+        
+    }
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            font-style: italic;
-            background: linear-gradient(rgba(107, 130, 167, 0.4), rgba(227, 218, 218, 0.4)),
-                url(gettyimages-173799627-612x612.jpg);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            color: white(186, 12, 12);
-            padding-top: -50px;
-            background-origin: padding-box;
+    fieldset {
+        background: rgba(215, 232, 235, 0.55);
+        color: black;
+        padding: 20px;
+        border-radius: 20px;
+        border: none;
+        box-shadow: 0 0 20px rgba(17, 16, 16, 0.899);
+        display: flex;
+        gap: 20px;
+        
+    }
+
+    .search-form {
+        flex: 1;
+    }
+
+    .results {
+        flex: 1;
+        background: rgba(255,255,255,0.9);
+        padding: 10px;
+        border-radius: 12px;
+        max-height: 520px;
+        overflow-y: auto;
+    }
+
+    .search-item {
+        margin-bottom: 15px;
+        font-size: 20px;
+    }
+
+    .doc{
+        padding: 8px 12px;
+        font-size: 16px;
+        border-radius: 8px;
+        background-color: rgba(210, 204, 204, 0.782);
+        margin: 6px 6px 6px 0;
+    }
+
+    input[type="checkbox"] {
+        margin: 5px;
+    }
+
+    input[type="button"], button {
+        margin-top: 15px;
+        padding: 10px 16px;
+        font-size: 16px;
+        background-color: rgb(64, 167, 235);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+        color: #fff;
+    }
+
+    input[type="button"]:hover, button:hover {
+        background-color: rgb(33, 121, 177);
+    }
+
+    .results ul{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .results li{
+        margin-bottom: 10px;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .result-info{ flex: 1; }
+
+    .book-btn{
+      padding:6px 10px;
+      background:#28a745;
+      color:#fff;
+      border-radius:6px;
+      border:none;
+      cursor:pointer;
+    }
+    .book-btn:hover{ background:#218838 }
+
+    .booking-form{
+      margin-top:8px;
+      background: #f7f9fb;
+      padding:8px;
+      border-radius:8px;
+      border:1px solid #e1e7ec;
+    }
+
+    .small{ padding:6px 8px; border-radius:6px; border:1px solid #ccc }
+
+    .notice {
+      margin-top:8px;
+      padding:8px;
+      background: #e6ffed;
+      border:1px solid #b8f1c2;
+      color: #064e1b;
+      border-radius:6px;
+      display:none;
+    }
+
+    .flex-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap }
+
+    /* overlay used briefly when redirecting */
+    #redirectOverlay {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.45);
+      color: #fff;
+      font-size: 20px;
+      z-index: 9999;
+    }
+
+            .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            margin: 20px 0px;
+            padding: 40px;
+            background-color: rgba(169, 179, 188, 0.92);
         }
 
-        fieldset {
-            background: rgba(215, 232, 235, 0.55);
+        .bar a {
+
+            text-decoration: none;
             color: black;
+            font-weight: bold;
+            font-size: x-large;
+            justify-content: center;  /* النصوص في المنتصف */
+            gap: 80px;                /* ← المسافة بين الكلمات */
             padding: 20px;
-            border-radius: 20px;
-            border: none;
-            box-shadow: 0 0 20px rgba(17, 16, 16, 0.899);
         }
 
-        #search{
-            margin-top: 150px;
-            width: 80%;
-            
-        }
-
-        .search-item {
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
-
-        .doc{
-            padding: 8px 12px;
-            font-size: 16px;
-            border-radius: 8px;
-            background-color: rgba(210, 204, 204, 0.782);
-            margin: 6px 6px 6px 0;
-        }
-
-        select, input[type="checkbox"] {
-            margin: 5px;
-        }
-
-        input[type="button"] {
-            margin-top: 15px;
-            padding: 10px 25px;
-            font-size: 18px;
-            background-color: rgb(64, 167, 235);
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        input[type="button"]:hover {
-            background-color: rgb(33, 121, 177);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-    
-    </style>
+</style>
 </head>
 <body>
+     <header class="topbar">
+        <div class="bar">
+            <a href="sandw.HTML">Home</a>
+            <a href="login.html">Login</a>
+            <a href="search.html">search</a>
+            <a href="booking.html">Booking</a>
+            <a href="profile admin.html">My Profile</a>
+        </div>
+    </header>
+
 
     <!-- Search Section -->
-        <form id="search" method="post">
-            <fieldset>
-
+    <form id="search" class="search-form" onsubmit="return false;">
+        <fieldset id="mainFieldset">
+            <div class="search-form">
                 <div class="search-item">
-                    <label style="color: black;">Doctor Name</label>
-                    <select class="doc">
+                    <label>Doctor Name</label>
+                    <select class="doc" id="doctorSelect">
                         <option value="">Select Doctor</option>
                         <option>Ahmed Mohamed</option>
                         <option>Sara Samy</option>
@@ -96,8 +197,8 @@
                 </div>
 
                 <div class="search-item">
-                    <label style="color: black;">Speciality</label>
-                    <select class="doc">
+                    <label>Speciality</label>
+                    <select class="doc" id="specSelect">
                         <option value="">Select Speciality</option>
                         <option>Cardiology</option>
                         <option>Dermatology</option>
@@ -107,26 +208,141 @@
                     </select>
                 </div>
 
-                <p style="color:  black;; text-decoration-line: underline;">Degree:</p>
-                <div style="color: black;">
-                <input type="checkbox" name="degree" value="Specialist" > Specialist<br>
-                <input type="checkbox" name="degree" value="Professor" > Professor<br>
-                <input type="checkbox" name="degree" value="Expert" > Expert Professor<br>
-                <input type="checkbox" name="degree" value="Consultant" > Consultant<br>
+                <p style="text-decoration-line: underline;">Degree:</p>
+                <div>
+                    <input type="checkbox" name="degree" value="Specialist" > Specialist&nbsp;&nbsp;
+                    <input type="checkbox" name="degree" value="Professor" > Professor&nbsp;&nbsp;
+                    <input type="checkbox" name="degree" value="Expert" > Expert Professor&nbsp;&nbsp;
+                    <input type="checkbox" name="degree" value="Consultant" > Consultant
                 </div>
 
-                <p style="color:  black;; text-decoration-line: underline; margin-top: 10px;">Available Appointments:</p>
-                <div style="color: black;" >
-                <input type="checkbox" name="day" value="today"> Today<br>
-                <input type="checkbox" name="day" value="tomorrow"> Tomorrow<br>
-                <input type="checkbox" name="day" value="any"> Any Time<br>
+                <p style="text-decoration-line: underline; margin-top: 10px;">Available Appointments:</p>
+                <div>
+                    <input type="checkbox" name="day" value="today"> Today&nbsp;&nbsp;
+                    <input type="checkbox" name="day" value="tomorrow"> Tomorrow&nbsp;&nbsp;
+                    <input type="checkbox" name="day" value="any"> Any Time
                 </div>
 
-                <input type="button" value="Search">
-            </fieldset>
-        </form>
+                <input type="button" value="Search" id="searchBtn">
+            </div>
 
-    </div>
-    
+            <div class="results">
+                <h3>Results:</h3>
+                <div id="resultsDiv">No results yet.</div>
+                <div class="notice" id="notice">Booked successfully</div>
+            </div>
+        </fieldset>
+    </form>
+
+    <!-- small overlay while redirecting -->
+    <div id="redirectOverlay">Redirecting to booking page...</div>
+
+<script>
+/* ========== Configuration ========== */
+/* Default booking page name (change this to the page you will use) */
+const BOOKING_PAGE = 'booking.html'; // <-- change this to your booking page filename
+/* You can also set a per-doctor target in the doctors array (see below) */
+
+/* ========== Data (mock) ========== */
+const doctors = [
+    {id: 'd1', name: "Ahmed Mohamed", speciality: "Cardiology", degree: "Specialist", available: ["today","tomorrow"], bookPage: 'booking-ahmed.html'},
+    {id: 'd2', name: "Sara Samy", speciality: "Dermatology", degree: "Professor", available: ["any"]},
+    {id: 'd3', name: "Alsaeed Khedr", speciality: "Neurology", degree: "Expert", available: ["today"]},
+    {id: 'd4', name: "Amr Hisham", speciality: "Pediatrics", degree: "Consultant", available: ["tomorrow"]},
+    {id: 'd5', name: "Islam Mohamed", speciality: "Orthopedics", degree: "Specialist", available: ["today","any"]}
+];
+
+/* ========== Helpers ========== */
+function escapeHTML(s){ if(!s && s !== 0) return ''; return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+/* ========== Render results ========== */
+function renderResults(filtered){
+  const resultsDiv = document.getElementById('resultsDiv');
+  if(filtered.length === 0){
+    resultsDiv.innerHTML = "<p>No matching doctors found.</p>";
+    return;
+  }
+  let html = '<ul>';
+  filtered.forEach((d) => {
+    html += `<li id="res-${d.id}">
+      <div class="result-info">
+        <strong>${escapeHTML(d.name)}</strong> — ${escapeHTML(d.speciality)} — ${escapeHTML(d.degree)}
+        <div class="muted">Available: ${d.available.join(', ')}</div>
+      </div>
+      <div>
+        <button class="book-btn" data-id="${d.id}">Book</button>
+      </div>
+    </li>`;
+  });
+  html += '</ul>';
+  resultsDiv.innerHTML = html;
+
+  // attach handlers for Book buttons
+  document.querySelectorAll('.book-btn').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      const id = btn.dataset.id;
+      goToBookingPageFor(id);
+    });
+  });
+}
+
+/* ========== Search logic ========== */
+document.getElementById("searchBtn").addEventListener("click", function(){
+    const selectedDoctor = document.getElementById('doctorSelect').value;
+    const selectedSpeciality = document.getElementById('specSelect').value;
+    const selectedDegrees = Array.from(document.querySelectorAll('input[name="degree"]:checked')).map(d=>d.value);
+    const selectedDays = Array.from(document.querySelectorAll('input[name="day"]:checked')).map(d=>d.value);
+
+    const filtered = doctors.filter(d => {
+        const matchDoctor = selectedDoctor === "" || d.name === selectedDoctor;
+        const matchSpec = selectedSpeciality === "" || d.speciality === selectedSpeciality;
+        const matchDegree = selectedDegrees.length === 0 || selectedDegrees.includes(d.degree);
+        const matchDay = selectedDays.length === 0 || d.available.some(day => selectedDays.includes(day));
+        return matchDoctor && matchSpec && matchDegree && matchDay;
+    });
+
+    renderResults(filtered);
+});
+
+/* ========== Booking navigation behavior ========== */
+/*
+  When user clicks Book:
+  - Determine target booking page:
+      1) if doctor has bookPage property -> use it
+      2) else use global BOOKING_PAGE
+  - Hide main fieldset content and show overlay message briefly
+  - Redirect to target page (window.location.href)
+*/
+function goToBookingPageFor(doctorId){
+  const doc = doctors.find(d => d.id === doctorId);
+  const target = (doc && doc.bookPage) ? doc.bookPage : BOOKING_PAGE;
+
+  // hide content (remove or hide) and show overlay message
+  const field = document.getElementById('mainFieldset');
+  if(field){
+    // fade out content quickly
+    field.style.transition = 'opacity 200ms';
+    field.style.opacity = '0';
+    setTimeout(()=> {
+      field.style.display = 'none';
+      // show overlay
+      const ov = document.getElementById('redirectOverlay');
+      ov.style.display = 'flex';
+      // small delay so user sees the overlay then navigate
+      setTimeout(()=> {
+        window.location.href = target;
+      }, 600);
+    }, 220);
+  } else {
+    // fallback: direct navigate
+    window.location.href = target;
+  }
+}
+
+/* optional: on page load, render all doctors so user sees something */
+renderResults(doctors);
+
+</script>
+
 </body>
 </html>
