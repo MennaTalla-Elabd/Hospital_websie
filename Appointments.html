@@ -82,65 +82,52 @@
     <h1>Appointments</h1>
 
     <input type="text" id="search" placeholder="Search by doctor">
+<table>
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Specialty</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody id="appointmentsTable"></tbody>
+</table>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Patient</th>
-                <th>Doctor</th>
-                <th>Specialty</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody id="appointmentsTable"></tbody>
-    </table>
-
-   <script>
-    let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
-    let table = document.getElementById("appointmentsTable");
-    let currentUser = prompt("Enter your name to see your appointments:").trim();
-
-    function displayAppointments(list) {
-        table.innerHTML = "";
-        if(list.length === 0){
-            table.innerHTML = `<tr><td colspan="6" style="text-align:center; color: red;" font>Not found</td></tr>`;
-            return;
-        }
-        list.forEach((a, index) => {
-            table.innerHTML += `
-                <tr>
-                    <td>${a.patient}</td>
-                    <td>${a.doctor}</td>
-                    <td>${a.specialtyname}</td>
-                    <td>${a.date}</td>
-                    <td>${a.time}</td>
-                    <td><button onclick="cancel(${index})">Cancel</button></td>
-                </tr>
-            `;
-        });
-    }
-
-    function cancel(index) {
-        appointments.splice(index, 1);
-        localStorage.setItem("appointments", JSON.stringify(appointments));
-        displayAppointments(appointments.filter(a => a.patient === currentUser));
-    }
-
-    // عرض الحجوزات الخاصة بالمستخدم الحالي فقط
-    let userAppointments = appointments.filter(a => a.patient === currentUser);
-    displayAppointments(userAppointments);
-
-    document.getElementById("search").addEventListener("keyup", function() {
-        let value = this.value.toLowerCase();
-        let filtered = appointments.filter(a =>
-            a.patient === currentUser && a.doctor.toLowerCase().includes(value)
-        );
-        displayAppointments(filtered);
+<script>
+fetch('appointments.php')
+.then(res => res.json())
+.then(data => {
+    const table = document.getElementById('appointmentsTable');
+    table.innerHTML = '';
+    data.forEach(app => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${app.patient}</td>
+            <td>${app.doctor_name}</td>
+            <td>${app.specialty}</td>
+            <td>${app.appointment_date}</td>
+            <td>${app.appointment_time}</td>
+            <td>
+                <form method="POST" action="cancel_appointment.php">
+                    <input type="hidden" name="appointment_id" value="${app.appointment_id}">
+                    <button type="submit">Cancel</button>
+                </form>
+            </td>
+        `;
+        table.appendChild(tr);
     });
-</script>
 
+    document.getElementById('search').addEventListener('keyup', function(){
+        const value = this.value.toLowerCase();
+        Array.from(table.rows).forEach(row => {
+            row.style.display = row.cells[1].textContent.toLowerCase().includes(value) ? '' : 'none';
+        });
+    });
+});
+</script>
 
 </body>
 </html>

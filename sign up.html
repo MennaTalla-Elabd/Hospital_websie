@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up to Hospital</title>
     <link rel="stylesheet" type="text/css" href="Styles.css" />
+    
     <style>
         
         .login_signup {
@@ -45,7 +46,7 @@
             font-size: 14px;
         }
 
-        input[type="submit"] {
+        .btn {
             width: 100%;
             padding: 12px;
             border-radius: 6px;
@@ -55,6 +56,7 @@
             color: white;
             font-size: 16px;
             margin-top: 10px;
+            text-align: center;
         }
 
         input[type="submit"]:hover {
@@ -74,7 +76,7 @@
             z-index: 1000;
             margin: 20px 0px;
             padding: 40px;
-            background-color: rgba(169, 179, 188, 0.92);
+            background-color: rgba(229, 236, 236, 0.92);
         }
 
         .bar a {
@@ -86,6 +88,10 @@
             justify-content: center;  
             gap: 80px;                
             padding: 20px;
+        }
+
+        body{
+            background-image: url(log.jpg);
         }
 
     </style>
@@ -123,8 +129,10 @@
         <input type="radio" name="gender" value="female"> Female
     </p>
 
-    <input type="submit" value="Submit">
-</form>
+    
+    <a href="fill profile patient.html" class="btn">Create</a>
 
+</form>
+<script src="signup.js" defer></script>
 </body>
 </html>

@@ -142,8 +142,8 @@
             color: black;
             font-weight: bold;
             font-size: x-large;
-            justify-content: center;  /* النصوص في المنتصف */
-            gap: 80px;                /* ← المسافة بين الكلمات */
+            justify-content: center;  
+            gap: 80px;                
             padding: 20px;
         }
     </style>
@@ -153,11 +153,13 @@
 
     <header class="topbar">
         <div class="bar">
+        <div class="bar">
             <a href="sandw.HTML">Home</a>
             <a href="login.html">Login</a>
             <a href="search.html">search</a>
             <a href="booking.html">Booking</a>
-            <a href="">My Profile</a>
+            <a href="profile admin.html">My Profile</a>
+        </div>
         </div>
     </header>
 
@@ -165,77 +167,22 @@
     <h1><b>Book your Appointment</b></h1>
 
     <div class="booking-box">
-        <form id="bookingForm">
-            <select id="specialty" required>
-                <option value="">Select Specialty</option>
-                <option>Cardiology</option>
-                <option>Dermatology</option>
-                <option>Neurology</option>
-                <option>Pediatrics</option>
-                <option>Orthopedics</option>
-            </select>
-            
-            <input type="text" id="doctor" placeholder="Doctor Name" required>
-            <input type="date" id="date" required>
-            <input type="time" id="time" required>
-            <input type="text" id="patient" placeholder="Enter your Name" required>
-            <input type="tel" id="number" placeholder="Enter your number" required>
-            <button type="submit">Book Now</button>
-        </form>
-    </div>
-</div>
-<div class="button-container">
-            <button type="button" id="viewAppointments" onclick="goToAppointments()">View My Appointments</button>
-            <button type="button" id="doctorSchedule" onclick="goToDoctorSchedule()">Doctor Schedule</button>
-        </div>
-     
-<script>
-  const form = document.getElementById("bookingForm");
-   function goToAppointments() {
-    window.location.href = "appointments.html";
-  }
-   
-      function goToDoctorSchedule() {
-    window.location.href = "doctorr.html";
-}
+<form method="POST" action="Booking.php">
 
-  let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+<select name="doctor_id" required>
+    <option value="">Select Doctor</option>
+    <option value="1">Dr Ahmed</option>
+    <option value="2">Dr Sara</option>
+</select>
 
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
+<input type="hidden" name="patient_id" value="1"> <!-- مؤقت -->
 
-    let doctor= document.getElementById("doctor").value.trim();
-    let date= document.getElementById("date").value;
-    let time= document.getElementById("time").value;
-    let patient= document.getElementById("patient").value;
-    let num= document.getElementById("number").value;
-    let specialtyname = document.getElementById("specialty").value
+<input type="date" name="appointment_date 	" required>
+<input type="time" name="appointment_time" required>
 
-    
-    if(doctor === "" || date === "" || time === ""){
-      message.textContent = "Please fill all fields";
-      message.style.color = "orange";
-      return;
-    }
+<button type="submit">Book Now</button>
+</form>
 
-    let conflict = appointments.some(a =>
-    a.doctor.toLowerCase() === doctor.toLowerCase() &&
-    a.date === date &&
-    a.time === time
-    );
-     
-    if(conflict){
-      alert("This appointment is already booked");
-      return;
-    }
 
-    appointments.push({patient ,doctor,specialtyname, date, time });
-    localStorage.setItem("appointments", JSON.stringify(appointments));
-
-    alert("Your appointment booked successfully");
-
-    form.reset();
-  });
-</script>
 </body>
 </html>

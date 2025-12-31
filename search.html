@@ -161,8 +161,8 @@
             color: black;
             font-weight: bold;
             font-size: x-large;
-            justify-content: center;  /* النصوص في المنتصف */
-            gap: 80px;                /* ← المسافة بين الكلمات */
+            justify-content: center;  
+            gap: 80px;                
             padding: 20px;
         }
 
@@ -343,6 +343,18 @@ function goToBookingPageFor(doctorId){
 renderResults(doctors);
 
 </script>
-
+ <?php if(!empty($searchResults)): ?>
+    <h3>Results:</h3>
+    <ul>
+        <?php foreach($searchResults as $doctor): ?>
+            <li>
+                Dr. <?php echo $doctor['name']; ?> (<?php echo $doctor['specialty']; ?>)
+                <a href="booking.php?doctor_id=<?php echo $doctor['id']; ?>&doctor_name=<?php echo urlencode($doctor['name']); ?>&specialty=<?php echo urlencode($doctor['specialty']); ?>">Book</a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php elseif(isset($_GET['query'])): ?>
+    <p>No doctors found.</p>
+<?php endif; ?>
 </body>
 </html>

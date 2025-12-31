@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type = "text/css">
+div>div{float:right;}
+div {
+border: black solid 1px;
+padding: 5px;
+}
+.baz {
+background-color:yellow;
+overflow:hidden;
+}
+</style>
+</head>
+<body>
+    <head> <title> Font properties </title>
+
+</head>
+<div class="baz">
+<div id="bar">
+<div> $$</div>
+<p id="foo"> text</p>
+other stuff
+</div>
+</div>
+<script>
+    window.onload = function() {
+    document.getElementById("bar").style.backgroundColor = "lightblue";
+    document.getElementById("foo").style.color = "red";
+}
+
+</script>
+</body>
+</html>

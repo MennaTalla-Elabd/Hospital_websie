@@ -28,49 +28,26 @@ h1 { text-align: center; margin-bottom: 20px; color: rgb(104, 104, 255); font-si
 <div id="calendar"></div>
 
 <script>
-let calendar;
-
 document.addEventListener('DOMContentLoaded', function() {
     const calendarEl = document.getElementById('calendar');
 
-    //  localStorage
-    let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
-
-    //  FullCalendar
-    const events = appointments.map(a => ({
-        title: a.patient + " (" + a.specialtyname + ")",
-        start: a.date + "T" + a.time,
-        color: "orange"
-    }));
-
-    calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        },
-        events: events,
-        editable: false,
-        selectable: false,
-        eventClick: null
-    });
-
-    calendar.render();
-});
-
-// تحديث الكاليندر تلقائي عند حجز جديد من صفحة Booking
-window.addEventListener('storage', function(){
-    if(calendar){
-        let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
-        const events = appointments.map(a => ({
-            title: a.patient + " (" + a.specialtyname + ")",
-            start: a.date + "T" + a.time,
-            color: "orange"
-        }));
-        calendar.removeAllEvents();
-        calendar.addEventSource(events);
-    }
+    fetch('getAppointments.php')
+        .then(response => response.json())
+        .then(events => {
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: events,
+                editable: false,
+                selectable: false
+            });
+            calendar.render();
+        })
+        .catch(err => console.error("Error loading appointments:", err));
 });
 </script>
 
